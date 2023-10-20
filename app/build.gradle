@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace 'com.mad.lab08_student_details'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.mad.lab08_student_details"
