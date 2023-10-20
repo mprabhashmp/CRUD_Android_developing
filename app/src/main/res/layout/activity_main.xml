@@ -20,7 +20,7 @@
         app:layout_constraintVertical_bias="0.183" />
 
     <Button
-        android:id="@+id/btnadd"
+        android:id="@+id/btnInsert"
         android:layout_width="188dp"
         android:layout_height="64dp"
         android:text="ADD"
