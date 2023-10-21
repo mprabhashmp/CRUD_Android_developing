@@ -1,9 +1,13 @@
 package com.mad.lab08_student_details;
 
+import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
 
 public class DBHandler extends SQLiteOpenHelper {
 
@@ -38,5 +42,31 @@ public class DBHandler extends SQLiteOpenHelper {
 
         sqLiteDatabase.insert("student",null,contentValues);
         sqLiteDatabase.close();
+    }
+
+    public ArrayList<Student> getAllStudents() {
+        SQLiteDatabase sqLiteDatabase = getReadableDatabase();
+        ArrayList<Student> studentList = new ArrayList<>();
+
+        String selectQuery = "SELECT * FROM student;";
+        Cursor cursor = sqLiteDatabase.rawQuery(selectQuery, null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                @SuppressLint("Range") int id = cursor.getInt(cursor.getColumnIndex("id"));
+                @SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex("name"));
+                @SuppressLint("Range") int age = cursor.getInt(cursor.getColumnIndex("age"));
+                @SuppressLint("Range") String address = cursor.getString(cursor.getColumnIndex("address"));
+                @SuppressLint("Range") String department = cursor.getString(cursor.getColumnIndex("dpt"));
+
+                Student student = new Student(id, name, age, address, department);
+                studentList.add(student);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        sqLiteDatabase.close();
+
+        return studentList;
     }
 }
