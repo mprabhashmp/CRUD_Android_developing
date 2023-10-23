@@ -20,7 +20,7 @@ public class DBHandler extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String sql ="CREATE TABLE student(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age NUMBER, address TEXT, dpt TEXT );";
+        String sql ="CREATE TABLE student(id INTEGER PRIMARY KEY AUTOINCREMENT, name TEXT, age TEXT, address TEXT, dpt TEXT );";
         sqLiteDatabase.execSQL(sql);
     }
 
@@ -38,7 +38,7 @@ public class DBHandler extends SQLiteOpenHelper {
         contentValues.put("name",student.getName());
         contentValues.put("age",student.getAge());
         contentValues.put("address",student.getAddress());
-        contentValues.put("department",student.getDpt());
+        contentValues.put("dpt",student.getDpt());
 
         sqLiteDatabase.insert("student",null,contentValues);
         sqLiteDatabase.close();
@@ -57,9 +57,9 @@ public class DBHandler extends SQLiteOpenHelper {
                 @SuppressLint("Range") String name = cursor.getString(cursor.getColumnIndex("name"));
                 @SuppressLint("Range") int age = cursor.getInt(cursor.getColumnIndex("age"));
                 @SuppressLint("Range") String address = cursor.getString(cursor.getColumnIndex("address"));
-                @SuppressLint("Range") String department = cursor.getString(cursor.getColumnIndex("dpt"));
+                @SuppressLint("Range") String dpt = cursor.getString(cursor.getColumnIndex("dpt"));
 
-                Student student = new Student(id, name, age, address, department);
+                Student student = new Student(id, name, age, address, dpt);
                 studentList.add(student);
             } while (cursor.moveToNext());
         }
