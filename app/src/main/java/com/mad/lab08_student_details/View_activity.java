@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class View_activity extends AppCompatActivity {
     private TableLayout tableLayout;
     private DBHandler dbHandler;
-    Button btnViewBack;
+    private Button btnViewBack;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -52,7 +52,7 @@ public class View_activity extends AppCompatActivity {
         btnViewBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                startActivity(new Intent(getApplicationContext(), MainActivity.class));
             }
         });
     }
@@ -64,5 +64,4 @@ public class View_activity extends AppCompatActivity {
         textView.setText(text);
         return textView;
     }
-
 }
